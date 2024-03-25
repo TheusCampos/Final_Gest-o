@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block conteudo %}
+
+<!-- Tabela de Alunos -->
+<section class="my-5 p-4 info-section bg-white rounded-lg dark:bg-gray-800">
+    <h2 class="text-2xl font-bold dark:text-white">Lista de Alunos               
+        <a href="{% url 'home_aluno' %}" class="btn btn-primary mr-2 text-right">Ver Alunos</a>
+    </h2>
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2 dark:text-black">Nome do Aluno</th>
+                <th class="px-4 py-2 dark:text-black">Matrícula</th>
+                <th class="px-4 py-2 dark:text-black">Endereço</th>
+                <th class="px-4 py-2"></th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td class="px-4 py-2 dark:text-black">{{ aluno.nome }}</td>
+                <td class="px-4 py-2 dark:text-black">{{ aluno.matricula }}</td>
+                <td class="px-4 py-2 dark:text-black">{{ aluno.endereco }}</td>
+            {% endfor %}
+        </tbody> 
+    </table>
+</section> 
+
+<a href="{% url 'cursos' %}" class="btn btn-primary ml-2 text-right">Ver cursos</a> 
+ 
+<!-- Tabela de Professores -->
+<section class="my-5 p-4 info-section bg-white rounded-lg dark:bg-gray-800">
+    <h2 class="text-2xl font-bold dark:text-white">Lista de Professores
+        <a href="{% url 'home_professor' %}" class="btn btn-primary ml-2 text-right">Ver Professores</a> 
+    </h2>
+    <table class="w-full">
+        <thead>
+            <tr>
+                <th class="px-4 py-2 dark:text-black">Nome do Professor</th>
+                <th class="px-4 py-2 dark:text-black">Formação</th>
+                <th class="px-4 py-2 dark:text-black">Endereço</th>
+                <th class="px-4 py-2"></th> 
+            </tr>
+        </thead>
+        <tbody>
+            {% for professor in professores %}
+                <tr>
+                    <td class="px-4 py-2 dark:text-black">{{ professor.nome }}</td>
+                    <td class="px-4 py-2 dark:text-black">{{ professor.formacao }}</td>
+                    <td class="px-4 py-2 dark:text-black">{{ professor.endereco }}</td>
+                    <td class="px-4 py-2 text-right">
+                        <a href="{% url 'delete_professor' professor.id %}"></a>
+                        <a href="{% url 'edit_professor' professor.id %}"></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}
